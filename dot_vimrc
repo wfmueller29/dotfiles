@@ -1,0 +1,264 @@
+" SETS --------------------------------------------------------------------{{{
+set cmdheight=2 " give a little space at bottom"
+set number 
+set relativenumber
+set noerrorbells 
+syntax on 
+set nowrap 
+set showmode 
+filetype on 
+filetype plugin indent on 
+set tabstop=4 
+set shiftwidth=4 " autoindent on o
+set expandtab "tab now is spaces 
+set noswapfile " don't use swaps 
+set colorcolumn=80 "make column 80 
+set scrolloff=8 "start scroll 8 lines before
+set incsearch "incremental search 
+set wildmenu
+set hidden "so i can move through buffers without saving
+set signcolumn=yes "to show errors
+set backspace=2 "allow backspace over indent, start, and new lines
+let $DOT = $HOME . "/dot"
+let $RC = $HOME . "/dot/vimfiles/vimrc"
+set path+=**  "allows fuzzy search using find command
+set formatoptions+=ro
+"}}}---------------------------------------------------------------------------
+
+" PLUGINS ------------------------------------------------------------------{{{
+" add plugins 
+
+call plug#begin() 
+Plug 'vim-pandoc/vim-pandoc' 
+Plug 'vim-pandoc/vim-pandoc-syntax' 
+Plug 'vim-pandoc/vim-rmarkdown' 
+" Plug 'NLKNguyen/papercolor-theme'   
+" Plug 'ackyshake/VimCompletesMe' 
+Plug 'vim-airline/vim-airline' 
+Plug 'vim-airline/vim-airline-themes' 
+Plug 'karoliskoncevicius/vim-sendtowindow'
+"Plug 'jpalardy/vim-slime'
+Plug 'tpope/vim-surround'
+Plug 'gruvbox-community/gruvbox'
+"Plug 'sainnhe/gruvbox-material' 
+Plug 'tpope/vim-fugitive'
+"Plug 'ackyshake/VimCompletesMe'
+Plug 'dense-analysis/ale'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'psliwka/vim-smoothie'
+Plug 'jiangmiao/auto-pairs'
+"Plug 'mileszs/ack.vim'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-commentary'
+"Plug 'preservim/nerdtree'
+"Plug 'altercation/vim-colors-solarized'
+"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"Plug 'andreypopp/asyncomplete-ale.vim'
+
+call plug#end()
+" }}}
+
+" MAPPINGS -----------------------------------------------------------------{{{
+"
+let mapleader = " " 
+" open an r terminal in the right window
+nnoremap <leader>sr :vsplit<CR><C-w>w:terminal<space>R<CR><C-w>w:q!<CR>
+" start python console in the right windows
+nnoremap <leader>sp :vsplit<CR><C-w>w:terminal<space>python<CR><C-w>w:q!<CR>
+" quit an r terminal in the right window
+nnoremap <leader>qr <C-W>lq()<CR>n<CR><C-\><C-N>:q<CR>
+" quit an python terminal in the right window
+nnoremap <leader>qp <C-W>lexit()<CR>n<CR><C-\><C-N>:q<CR>
+"close the current buffer without closing the window
+nnoremap <leader>qw :bprevious<bar>split<bar>bnext<bar>bdelete<CR>
+" insert one character
+nnoremap <leader>i i_<Esc>r
+
+nnoremap Y y$
+
+nmap <leader>y "*y 
+vmap <leader>y "*y 
+nmap <leader>p "*p
+
+" Window Mappings
+noremap <C-j> <C-W>j
+noremap <C-k> <C-W>k
+noremap <C-h> <C-W>h
+noremap <C-l> <C-W>l
+" Apply same mappings to terminal
+tnoremap <C-j> <C-W>j
+tnoremap <C-k> <C-W>k
+tnoremap <C-h> <C-W>h
+tnoremap <C-l> <C-W>l
+tnoremap <leader><ESC> <C-\><C-n>
+
+"term remap esc
+"tnoremap <Esc> <C-\><C-n>
+"tnoremap <A-[> <Esc>
+"split console with other buffer
+tnoremap <C-s> <C-\><C-n>:vsplit<bar>enew<CR><C-W>li<C-W>h
+
+" ale remap
+nnoremap <leader>ws :ALEFix<space>trim_whitespace<CR> 
+
+" source RC
+nnoremap <leader>src :Sorc<CR>
+" git add commit push rc
+nnoremap <leader>pd :Pushdot<CR>
+" pull dot aka fetch
+nnoremap <leader>fd :Pulldot<CR>
+" md to pdf
+nnoremap <leader>pan :call<space>MdToPdf()<CR>
+
+" send to terminal
+" vnoremap <leader>l :<BS><BS><BS><BS><BS>call<space>YankRight()<CR>
+
+" }}}
+
+" VIMSCRIPT ----------------------------------------------------------------{{{
+
+" netrw hangup leaving buffer
+" Per default, netrw leaves unmodified buffers open. This autocommand
+" deletes netrw's buffer once it's hidden (using ':q', for example)
+ autocmd FileType netrw setl bufhidden=delete
+
+" This will enable code folding
+" Use the marker method of folding
+augroup filetype_vim
+ autocmd!
+ autocmd FileType vim setlocal foldmethod=marker
+augroup END 
+
+" Use ale within asyncomplete
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#ale#get_source_options({
+    \ 'priority': 10, 
+    \ }))
+" remaps for asyncomplte 
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+" autocmd vimenter * ++nested colorscheme gruvbox
+
+" Source RC file from dot file directory. This way I can updated rc from 
+" different repo
+let win=has('win32')
+let mac=has('macunix')
+function! MoveDotRepoAndSource()
+  if has('win32')
+    !ROBOCOPY C:\Users\muellerwf\dot\  
+                    \  C:\Users\muellerwf\ 
+                    \  /e 
+                    \  /xf .gitignore
+                    \  /xd .git
+  elseif has('macunix')
+    !rsync $HOME/dot/* $HOME --exclude=$HOME/.gitignore 
+                    \   --exclude=$HOME/.git/ -r -v  
+                    \   --include=".*"
+    !rsync $HOME/vimfiles/* $HOME/.vim/ -r 
+    !rm -rf $HOME/vimfiles
+    !mv $HOME/.vim/vimrc $HOME/.vimrc
+   elseif has('unix')
+    !rsync $HOME/dot/* $HOME --exclude=$HOME/.gitignore 
+                    \   --exclude=$HOME/.git/ -r -v  
+                    \   --include=".*"
+    !rsync $HOME/vimfiles/* $HOME/.vim/ -r 
+    !rm -rf $HOME/vimfiles
+    !mv $HOME/.vim/vimrc $HOME/.vimrc
+  endif
+endfunction
+
+
+" md to pdf function
+function! MdToPdf()
+    let pdf=expand('%:t:r') . ".pdf "
+    let md=expand('%:t')
+    let pandoccmd="pandoc -s -o " . pdf . md
+    let cmd="!cd " . expand('%:h') . " && " . pandoccmd . " && " . "open " . pdf
+    execute cmd
+endfunction
+
+" add dot and commit, then push to main
+function! AddDotCommitPush()
+    !cd $DOT && git add . && git commit && git push origin main
+endfunction
+
+" pull dot 
+function! PullDot()
+    !cd $DOT && git pull origin main
+endfunction
+
+command! Sorc call MoveDotRepoAndSource() | source $MYVIMRC | PlugInstall
+command! Pushdot call AddDotCommitPush()
+command! Pulldot call PullDot()
+
+" get visual selection
+" function! s:get_visual_selection()
+"     " Why is this not a built-in Vim script function?!
+"     let [line_start, column_start] = getpos("'<")[1:2]
+"     let [line_end, column_end] = getpos("'>")[1:2]
+"     let lines = getline(line_start, line_end)
+"     if len(lines) == 0
+"         return ''
+"     endif
+"     let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
+"     let lines[0] = lines[0][column_start - 1:]
+"     return join(lines, "\n")
+" endfunction
+
+" " yank and paste to terminal buffer to right
+" function! YankRight()
+"     let text = s:get_visual_selection()
+"     wincmd l
+"     normal <C-\><C-n>
+"     let winno=winnr()
+"     let bufno=winbufnr(winno)
+"     " echo text
+"     call term_sendkeys(bufno, text)
+" endfunction
+
+""" }}}
+
+" STATUS LINE --------------------------------------------------------------{{{
+
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#enabled = 1
+" let g:airline_left_sep = '>>' 
+" let g:airline_right_sep = '<<'
+
+" }}}
+
+" GVIM  --------------------------------------------------------------------{{{
+
+au GUIEnter * simalt ~x
+if has("gui_running")
+  " Set a nicer font.
+  set guifont=Consolas:h11:cDEFAULT
+  set guioptions-=T " Hide the toolbar.
+  set guioptions-=m "remove menu bar
+  set guioptions-=l "remove scroll bar 
+  set guioptions-=r "remove scroll bar
+  set guioptions-=b "remove scroll bar
+  set guioptions= "remove all gui options
+endif
+
+"  }}}
+
+" OUTRO --------------------------------------------------------------------{{{  
+"let g:gruvbox_material_enable_italic=0 "fixed grubox highlight issue on mac
+"let g:gruvbox_material_disable_italic_comment=1 "fixed grubox highlight issue on mac
+
+if !has('macunix')
+    set termguicolors " fixed grubox highlight issue on mac
+endif
+
+set background=dark
+colorscheme gruvbox
+set laststatus=2
+"let g:ale_completion_enable = 1
+let g:asyncomplete_auto_popup=1
+let g:pandoc#modules#disabled=["folding"]
+" let g:slime_target = "vimterminal"
+" colo PaperColor
+" hi ColorColumn ctermbg=grey guibg=grey
+" }}}--------------------------------------------------------------------------
+
