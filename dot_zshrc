@@ -74,7 +74,7 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 
 # external plugins installed by brew
-source ~/.config/zsh/plugins.sh
+source ~/.config/zsh/plugin.sh
 
 # plugins within oh-my-zsh
 plugins=(colored-man-pages)
@@ -107,11 +107,11 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ch="chezmoi"
+source ~/.config/zsh/alias.sh
 
 # Sets
 # This will allow vi mode on ESC and insert mode on :q
-set -o vi
+source ~/.config/zsh/set.sh
 
 # Source fzf, not sure if this was me or someone else who put this here
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
