@@ -22,12 +22,6 @@ require('lazy').setup({
     { 'hrsh7th/nvim-cmp' },
     { 'L3MON4D3/LuaSnip' },
 
-    {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {},
-    },
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 
     {
@@ -42,6 +36,7 @@ require('lazy').setup({
     "christoomey/vim-tmux-navigator",
     'tpope/vim-fugitive',
 
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     {
         'numToStr/Comment.nvim',
         config = function()
