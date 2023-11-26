@@ -37,6 +37,7 @@ require('lazy').setup({
     'tpope/vim-fugitive',
 
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+    { 'rose-pine/neovim', name = 'rose-pine' },
     {
         'numToStr/Comment.nvim',
         config = function()
