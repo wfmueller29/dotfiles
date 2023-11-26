@@ -1,0 +1,155 @@
+# === Session defaults ===
+# reset border color in default mode
+# :: default : yabai -m config active_window_border_color 0xE032CD32
+
+# =============================== lalt ========================================
+# Manipulate a space and navigate the space
+# =============================================================================
+# window focus
+lalt - h : yabai -m window --focus west
+lalt - j : yabai -m window --focus south
+lalt - k : yabai -m window --focus north
+lalt - l : yabai -m window --focus east
+
+# Move window relatively
+lalt + shift - h : yabai -m window --warp west
+lalt + shift - j : yabai -m window --warp south
+lalt + shift - k : yabai -m window --warp north
+lalt + shift - l : yabai -m window --warp east
+
+# send window to space 
+lalt - 0x1E : yabai -m window --space next
+lalt - 0x21 : yabai -m window --space prev
+lalt - 1 : yabai -m window --space 1
+lalt - 2 : yabai -m window --space 2
+lalt - 3 : yabai -m window --space 3
+lalt - 4 : yabai -m window --space 4
+lalt - 5 : yabai -m window --space 5
+lalt - 6 : yabai -m window --space 6
+lalt - 7 : yabai -m window --space 7
+lalt - 8 : yabai -m window --space 8
+lalt - 9 : yabai -m window --space 9
+
+# toggle fullscreen
+# options: zoom-parent, zoom-fullscreen, native-fullscreen
+lalt - m : yabai -m window --toggle zoom-fullscreen
+lalt - n : yabai -m window --toggle native-fullscreen
+
+# source yabai
+lalt - s : yabai --restart-service
+
+# balance space
+lalt - b : yabai -m space --balance
+
+# toggle padding and the gap 
+lalt - p : yabai -m space --toggle padding && \
+    yabai -m space --toggle gap
+
+# Float / Unfloat window
+lalt - f : \
+    yabai -m window --toggle float; \
+    yabai -m window --toggle border
+# =============================== ralt ========================================
+# Move spaces with or without a window
+# =============================================================================
+
+# =============================== rshift ======================================
+# Open apps and move spaces
+# =============================================================================
+
+# We use ralt to move to specific spaces
+# Focus space with mission-control index 2
+rshift - 0x1E : yabai -m space --focus next || yabai -m space --focus first
+rshift - 0x21 : yabai -m space --focus prev || yabai -m space --focus last
+rshift - 1 : yabai -m space --focus 1
+rshift - 2 : yabai -m space --focus 2
+rshift - 3 : yabai -m space --focus 3
+rshift - 4 : yabai -m space --focus 4
+rshift - 5 : yabai -m space --focus 5
+rshift - 6 : yabai -m space --focus 6
+rshift - 7 : yabai -m space --focus 7
+rshift - 8 : yabai -m space --focus 8
+rshift - 9 : yabai -m space --focus 9
+# Toggle mission control 
+rshift - 0x32 : yabai -m space --toggle mission-control
+
+# send window to desktop and follow focus 
+rshift + alt - 0x1E : yabai -m window --space next; yabai -m space --focus next
+rshift + alt - 0x21 : yabai -m window --space prev; yabai -m space --focus prev
+rshift + alt - 1 : yabai -m window --space  1; yabai -m space --focus 1
+rshift + alt - 2 : yabai -m window --space  2; yabai -m space --focus 2
+rshift + alt - 3 : yabai -m window --space  3; yabai -m space --focus 3
+rshift + alt - 4 : yabai -m window --space  4; yabai -m space --focus 4
+rshift + alt - 5 : yabai -m window --space  5; yabai -m space --focus 5
+rshift + alt - 6 : yabai -m window --space  6; yabai -m space --focus 6
+rshift + alt - 7 : yabai -m window --space  7; yabai -m space --focus 7
+rshift + alt - 8 : yabai -m window --space  8; yabai -m space --focus 8
+rshift + alt - 9 : yabai -m window --space  9; yabai -m space --focus 9
+
+# open applications
+rshift - t : open -a iTerm
+rshift - a : open -a Anki
+# we need to ensure that we are goin to our designated chrome process, not 
+# one that was opened in another space for quick browsing
+rshift - g : yabai -m space --focus 5; open -a Google\ Chrome
+rshift - c : open -a Calendar
+rshift - l : open -a Reminders
+rshift - r : open -a RStudio
+rshift - f : open -a Finder
+rshift - m : open -a Mail
+rshift - s : open -a System\ Preferences
+rshift - e : open ~/Desktop/Memory\ Palace
+rshift - w : open -a Microsoft\ Word
+rshift - z : open -a zoom.us
+rshift - n : open -a Stickies
+rshift - d : open -a Dictionary
+rshift - p : open -a Microsoft\ PowerPoint
+
+# double shift apps
+rshift + lshift - g : open -u https://chat.openai.com/
+rshift + lshift - m : open -a Music
+
+rshift - escape : yabai -m window --close; yabai -m window --focus largest
+
+# open applications with new instance
+rshift + alt - g : open -na Google\ Chrome; \
+    zsh ~/.config/bin/check_window.sh "Google Chrome"; \
+    yabai -m window --space recent; \
+    yabai -m space --focus recent
+rshift + alt - t : open -na iTerm; \
+    zsh ~/.config/bin/check_window.sh "iTerm2"; \
+    yabai -m window --space recent; \
+    yabai -m space --focus recent
+rshift + lshift + alt - g : open -na 'Google Chrome' --args --new-window 'http://chat.openai.com/'; \
+    zsh ~/.config/bin/check_window.sh "Google Chrome"; \
+    yabai -m window --space recent; \
+    yabai -m space --focus recent
+
+# =============================== rshift + lshift ==============================
+# Manage Number of Spaces
+# =============================================================================
+
+# create desktop, move window 
+rshift + lshift - n : yabai -m space --create
+# destroy current space
+rshift + lshift - d : yabai -m space --destroy
+# source yabai
+rshift + lshift - s : yabai --restart-service
+
+# =============================== Resize Mode =================================
+# Set resize border color 
+:: resize @  
+# toggle resize mode 
+resize < escape ; default
+default < lalt - r ; resize
+# resize commands
+resize < h : yabai -m window --resize left:-50:0; \
+                  yabai -m window --resize right:-50:0
+resize < j : yabai -m window --resize bottom:0:50; \
+                  yabai -m window --resize top:0:50
+resize < k   : yabai -m window --resize top:0:-50; \
+                  yabai -m window --resize bottom:0:-50
+resize < l : yabai -m window --resize right:50:0; \
+                  yabai -m window --resize left:50:0 
+
+
