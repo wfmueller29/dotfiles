@@ -113,5 +113,8 @@ source ~/.config/zsh/alias.sh
 # This will allow vi mode on ESC and insert mode on :q
 source ~/.config/zsh/set.sh
 
+# keybinds
+source ~/.config/zsh/bindkey.sh
+
 # Source fzf, not sure if this was me or someone else who put this here
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
