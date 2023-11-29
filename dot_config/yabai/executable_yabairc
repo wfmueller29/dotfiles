@@ -85,7 +85,8 @@ yabai -m rule --add app="^Music$" space=^9
 
 # Define apps that will go in other space (#8)
 other=("^Microsoft PowerPoint$" \
-        "^Preview$")
+        "^Preview$" \
+        "^zoom.us$")
 
 # concatenate the not_other array to string with | delimiter to serve as regex
 other=$(IFS='|';echo "${other[*]}";IFS=$' \t\n')
