@@ -35,6 +35,8 @@ require('lazy').setup({
     "jalvesaq/Nvim-R",
     "christoomey/vim-tmux-navigator",
     'tpope/vim-fugitive',
+    'NvChad/nvim-colorizer.lua',
+    'lewis6991/gitsigns.nvim',
 
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     { 'rose-pine/neovim', name = 'rose-pine' },
