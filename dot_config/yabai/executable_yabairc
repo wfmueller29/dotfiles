@@ -69,7 +69,7 @@ yabai -m rule --add app="^Dictionary$" manage=off
 yabai -m rule --add app="^FaceTime$" manage=off
 yabai -m rule --add app="^Spotlight Search$" manage=off
 yabai -m rule --add app="^System Information$" manage=off
-yabai -m rule --add app="^Messages$" manage=off
+# yabai -m rule --add app="^Messages$" manage=off
 yabai -m rule --add app="^Notes$" manage=off
 
 yabai -m rule --add app="^Mail$" space=^1
