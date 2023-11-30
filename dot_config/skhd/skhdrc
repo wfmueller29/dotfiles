@@ -116,15 +116,15 @@ rshift - escape : yabai -m window --close; yabai -m window --focus largest
 
 # open applications with new instance
 rshift + alt - g : open -na Google\ Chrome; \
-    zsh ~/.config/bin/check_window.sh "Google Chrome"; \
+    bash ~/.config/bin/check_window.sh "Google Chrome"; \
     yabai -m window --space recent; \
     yabai -m space --focus recent
 rshift + alt - t : open -na iTerm; \
-    zsh ~/.config/bin/check_window.sh "iTerm2"; \
+    bash ~/.config/bin/check_window.sh "iTerm2"; \
     yabai -m window --space recent; \
     yabai -m space --focus recent
 rshift + lshift + alt - g : open -na 'Google Chrome' --args --new-window 'http://chat.openai.com/'; \
-    zsh ~/.config/bin/check_window.sh "Google Chrome"; \
+    bash ~/.config/bin/check_window.sh "Google Chrome"; \
     yabai -m window --space recent; \
     yabai -m space --focus recent
 

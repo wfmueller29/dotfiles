@@ -1,14 +1,16 @@
-#!/bin/zsh
+#!/bin/bash
 
 # This script checks to see if the name of the app of the current window 
 # matches the name of the app of the function input
 
-local app=$1
-local current_app=$(yabai -m query --windows --window | jq .app)
-current_app=$(echo "${current_app:1: -1}")
+app=$1
+current_app=$(yabai -m query --windows --window | jq .app)
+# To remove quotes from string
+current_app=$(echo "${current_app:1:${#current_app}-2}")
 
-until [[ "${app}" == "${current_app}" ]]; do 
+until [ "${app}" == "${current_app}" ]; do 
 sleep .001
 current_app=$(yabai -m query --windows --window | jq .app)
-current_app=$(echo "${current_app:1: -1}")
+# To remove quotes from string
+current_app=$(echo "${current_app:1:${#current_app}-2}")
 done
