@@ -58,8 +58,9 @@ setup_space 7 rstu
 setup_space 8 other
 setup_space 9 music
 
-# make anki stack
+# make anki stack, and other stack
 yabai -m config --space 3 layout stack
+yabai -m config --space 8 layout stack
 
 # exceptions
 yabai -m rule --add app="^System Settings$" manage=off

@@ -97,19 +97,22 @@ rshift - l : open -a Reminders
 rshift - r : open -a RStudio
 rshift - f : open -a Finder
 rshift - m : open -a Mail
-rshift - s : open -a System\ Preferences
 rshift - e : open ~/Desktop/Memory\ Palace
 rshift - w : open -a Microsoft\ Word
 rshift - z : open -a zoom.us
-rshift - n : open -a Stickies
+rshift - s : open -a Stickies
 rshift - d : open -a Dictionary
 rshift - p : open -a Microsoft\ PowerPoint
+rshift - n : open -a Notes
 
 # double shift apps
 rshift + lshift - g : open -u https://chat.openai.com/
 rshift + lshift - m : open -a Music
+rshift + lshift - p : open -a System\ Preferences
 
 rshift - escape : yabai -m window --close; yabai -m window --focus largest
+# This is how we can quick stickies, or even close windows
+# osascript -e 'tell application "System Events" to keystroke "q" using {command down}'
 
 # open applications with new instance
 rshift + alt - g : open -na Google\ Chrome; \
