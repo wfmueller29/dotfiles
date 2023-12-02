@@ -104,8 +104,8 @@ rshift - d : open -a Dictionary
 rshift - p : open -a Microsoft\ PowerPoint
 rshift - n : open -a Notes
 rshift - b : open -a Messages
+# rshift - f : osascript -e 'tell application "System Events" to keystroke space using {command down}'
 # call spotlight
-rshift - f : osascript -e 'tell application "System Events" to key code 49 using {command down}'
 
 # double shift apps
 rshift + lshift - f : open -a Finder
