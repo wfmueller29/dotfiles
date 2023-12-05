@@ -19,7 +19,7 @@ require('lazy').setup({
     --- Uncomment these if you want to manage LSP servers from neovim
     { 'williamboman/mason.nvim' },
     { 'williamboman/mason-lspconfig.nvim' },
-    { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
+    { 'VonHeikemen/lsp-zero.nvim', branch = 'v3.x' },
     { 'neovim/nvim-lspconfig' },
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/nvim-cmp' },
@@ -34,9 +34,10 @@ require('lazy').setup({
     'tpope/vim-fugitive',
 
     -- Colorschemes
-    { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
+    { "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = ... },
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     { 'rose-pine/neovim', name = 'rose-pine' },
+    { "folke/tokyonight.nvim", lazy = false, priority = 1000, opts = {}, },
     'NvChad/nvim-colorizer.lua',
     {
         'nvim-lualine/lualine.nvim',
