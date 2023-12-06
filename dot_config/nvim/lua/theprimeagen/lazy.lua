@@ -33,7 +33,18 @@ require('lazy').setup({
     'lewis6991/gitsigns.nvim',
     'tpope/vim-fugitive',
 
-    -- Colorschemes
+    -- Debug
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        }
+    },
+
+    -- Colorschemes / Themes
     { "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = ... },
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     { 'rose-pine/neovim', name = 'rose-pine' },
