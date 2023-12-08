@@ -26,3 +26,7 @@ vim.opt.updatetime = 50
 vim.opt.termguicolors = true
 
 vim.g.R_assign_map = '<M-->'
+
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+vim.o.foldenable = false
