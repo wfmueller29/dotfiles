@@ -113,7 +113,9 @@ rshift + lshift - g : open -u https://chat.openai.com/
 rshift + lshift - m : open -a Music
 rshift + lshift - p : open -a System\ Preferences
 
-rshift - escape : yabai -m window --close; yabai -m window --focus largest
+rshift - escape : bash ~/.config/bin/special_close.sh; \
+    yabai -m window --focus largest
+rshift - q : bash ~/.config/bin/quit_app.sh
 # This is how we can quick stickies, or even close windows
 # osascript -e 'tell application "System Events" to keystroke "q" using {command down}'
  
