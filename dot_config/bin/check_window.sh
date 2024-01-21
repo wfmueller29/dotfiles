@@ -6,11 +6,13 @@
 app=$1
 current_app=$(yabai -m query --windows --window | jq .app)
 # To remove quotes from string
-current_app=$(echo "${current_app:1:${#current_app}-2}")
+current_app="${current_app%\"}"
+current_app="${current_app#\"}"
 
 until [ "${app}" == "${current_app}" ]; do 
 sleep .001
 current_app=$(yabai -m query --windows --window | jq .app)
 # To remove quotes from string
-current_app=$(echo "${current_app:1:${#current_app}-2}")
+current_app="${current_app%\"}"
+current_app="${current_app#\"}"
 done
