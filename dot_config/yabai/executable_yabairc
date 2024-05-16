@@ -13,11 +13,13 @@ yabai -m config layout bsp
 yabai -m config window_placement second_child
 
 # padding set to 8px
-yabai -m config top_padding 8
+yabai -m config external_bar all:40:0
+# yabai -m config top_padding 40
 yabai -m config bottom_padding 8
 yabai -m config left_padding 8
 yabai -m config right_padding 8
 yabai -m config window_gap 8
+
 
 # border colors
 # yabai -m config window_border               on
@@ -93,13 +95,13 @@ other=(
 #        "^Microsoft PowerPoint$" \
         "^Music$" \
         "^Preview$" \
-        "^Microsoft Excel$" \
-        "^zoom.us$")
+        # "^Microsoft Excel$" \
+        # "^zoom.us$" \
+        "^Preview$")
 
 # concatenate the not_other array to string with | delimiter to serve as regex
 other=$(IFS='|';echo "${other[*]}";IFS=$' \t\n')
-
-# yabai -m rule --add app="${other}" space=^10
+yabai -m rule --add app="${other}" space=^10
 
 # lets try borders (see git repo janky borders)
 # borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0 2>/dev/null 1>&2 &
