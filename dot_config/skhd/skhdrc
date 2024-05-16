@@ -70,8 +70,11 @@ rshift - 6 : yabai -m space --focus 6
 rshift - 7 : yabai -m space --focus 7
 rshift - 8 : yabai -m space --focus 8
 rshift - 9 : yabai -m space --focus 9
-# Toggle mission control 
-rshift - 0x32 : yabai -m space --toggle mission-control
+
+# Toggle manage of window with the <`>  key
+rshift - 0x32 : bash ~/.config/bin/toggle_manage.sh
+# Toggle stack or bsp with <Tab> key
+rshift - 0x30 : bash ~/.config/bin/toggle_stack.sh
 
 # send window to desktop and follow focus 
 rshift + alt - 0x1E : yabai -m window --space next; yabai -m space --focus next
@@ -87,22 +90,20 @@ rshift + alt - 8 : yabai -m window --space  8; yabai -m space --focus 8
 rshift + alt - 9 : yabai -m window --space  9; yabai -m space --focus 9
 
 # open applications
-rshift - t : open -a iTerm
-rshift - a : open -a Anki
-# we need to ensure that we are goin to our designated chrome process, not 
-# one that was opened in another space for quick browsing
-rshift - g : yabai -m space --focus 5; open -a Google\ Chrome
-rshift - c : open -a Calendar
-rshift - l : open -a Reminders
-rshift - r : open -a RStudio
-rshift - m : open -a Mail
-rshift - e : open ~/Desktop/Memory\ Palace
-rshift - w : open -a Microsoft\ Word
-rshift - z : open -a zoom.us
+rshift - m : bash ~/.config/bin/assigned_open.sh Mail 1
+rshift - c : bash ~/.config/bin/assigned_open.sh "Calendar" 2
+rshift - l : bash ~/.config/bin/assigned_open.sh Reminders 2
+rshift - n : bash ~/.config/bin/assigned_open.sh Notes 3
+rshift - e : bash ~/.config/bin/assigned_open.sh "Microsoft\ Excel" 4
+rshift - w : bash ~/.config/bin/assigned_open.sh "Microsoft\ Word" 4
+rshift - p : bash ~/.config/bin/assigned_open.sh "Microsoft\ PowerPoint" 5
+rshift - a : bash ~/.config/bin/assigned_open.sh Anki 6
+rshift - g : bash ~/.config/bin/assigned_open.sh "Google\ Chrome" 7
+rshift - t : bash ~/.config/bin/assigned_open.sh iTerm 8
+rshift - r : bash ~/.config/bin/assigned_open.sh RStudio 9
+rshift - z : bash ~/.config/bin/assigned_open.sh zoom.us 10
 rshift - s : open -a Stickies
 rshift - d : open -a Dictionary
-rshift - p : open -a Microsoft\ PowerPoint
-rshift - n : open -a Notes
 rshift - b : open -a Messages
 # rshift - f : osascript -e 'tell application "System Events" to keystroke space using {command down}'
 # call spotlight
@@ -110,8 +111,9 @@ rshift - b : open -a Messages
 # double shift apps
 rshift + lshift - f : open -a Finder
 rshift + lshift - g : open -u https://chat.openai.com/
-rshift + lshift - m : open -a Music
+rshift + lshift - m : bash ~/.config/bin/assigned_open.sh Music 10
 rshift + lshift - p : open -a System\ Preferences
+rshift + lshift - l : shortcuts run "TaskCut"
 
 rshift - escape : bash ~/.config/bin/special_close.sh; \
     yabai -m window --focus largest

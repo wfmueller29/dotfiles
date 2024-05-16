@@ -51,15 +51,16 @@ function setup_space {
 setup_space 1 mail
 setup_space 2 cal
 setup_space 3 anki
-setup_space 4 word
+setup_space 4 notes
 setup_space 5 web
 setup_space 6 term
 setup_space 7 rstu
 setup_space 8 other
 setup_space 9 music
+setup_space 10 word
 
 # make anki stack, and other stack
-yabai -m config --space 3 layout stack
+yabai -m config --space 6 layout stack
 yabai -m config --space 8 layout stack
 
 # exceptions
@@ -71,29 +72,34 @@ yabai -m rule --add app="^FaceTime$" manage=off
 yabai -m rule --add app="^Spotlight Search$" manage=off
 yabai -m rule --add app="^System Information$" manage=off
 # yabai -m rule --add app="^Messages$" manage=off
-yabai -m rule --add app="^Notes$" manage=off
+# yabai -m rule --add app="^Notes$" manage=off
 yabai -m rule --add app="^R$" manage=off
 
-yabai -m rule --add app="^Mail$" space=^1
-yabai -m rule --add app="^Calendar$" space=^2
-yabai -m rule --add app="^Reminders$" space=^2
-yabai -m rule --add app="^Anki$" space=^3
-yabai -m rule --add app="^Microsoft Excel$" space=^3
-yabai -m rule --add app="^Microsoft Word$" space=^4
-yabai -m rule --add app="^Google Chrome$" space=^5
-yabai -m rule --add app="^iTerm2$" space=^6
-yabai -m rule --add app="^RStudio$" space=^7
-yabai -m rule --add app="^Music$" space=^9
+# yabai -m rule --add app="^Mail$" space=^1
+# yabai -m rule --add app="^Calendar$" space=^2
+# yabai -m rule --add app="^Reminders$" space=^2
+# yabai -m rule --add app="^Microsoft Excel$" space=^3
+# yabai -m rule --add app="^Notes$" space=^3
+# yabai -m rule --add app="^Microsoft Word$" space=^4
+# yabai -m rule --add app="^Microsoft PowerPoint$" space=^5
+# yabai -m rule --add app="^Anki$" space=^6
+# yabai -m rule --add app="^Google Chrome$" space=^7
+# yabai -m rule --add app="^iTerm2$" space=^8
+# yabai -m rule --add app="^RStudio$" space=^9
+# yabai -m rule --add app="^Music$" space=^10
 
 # Define apps that will go in other space (#8)
-other=("^Microsoft PowerPoint$" \
+other=(
+#        "^Microsoft PowerPoint$" \
+        "^Music$" \
         "^Preview$" \
+        "^Microsoft Excel$" \
         "^zoom.us$")
 
 # concatenate the not_other array to string with | delimiter to serve as regex
 other=$(IFS='|';echo "${other[*]}";IFS=$' \t\n')
 
-yabai -m rule --add app="${other}" space=^8
+# yabai -m rule --add app="${other}" space=^10
 
 # lets try borders (see git repo janky borders)
 # borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0 2>/dev/null 1>&2 &
