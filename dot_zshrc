@@ -118,3 +118,6 @@ source ~/.config/zsh/bindkey.sh
 
 # Source fzf, not sure if this was me or someone else who put this here
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
