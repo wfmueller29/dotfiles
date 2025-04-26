@@ -74,7 +74,7 @@ rshift - 9 : yabai -m space --focus 9
 # Toggle manage of window with the <`>  key
 rshift - 0x32 : bash ~/.config/bin/toggle_manage.sh
 # Toggle stack or bsp with <Tab> key
-rshift - 0x30 : bash ~/.config/bin/toggle_stack.sh
+rshift + lshift - 0x30 : bash ~/.config/bin/toggle_stack.sh
 
 # send window to desktop and follow focus 
 rshift + alt - 0x1E : yabai -m window --space next; yabai -m space --focus next
@@ -93,29 +93,40 @@ rshift + alt - 9 : yabai -m window --space  9; yabai -m space --focus 9
 rshift - m : bash ~/.config/bin/assigned_open.sh Mail 1
 rshift - c : bash ~/.config/bin/assigned_open.sh Calendar 2
 rshift - l : bash ~/.config/bin/assigned_open.sh Reminders 2
-rshift - n : bash ~/.config/bin/assigned_open.sh Notes 3
+rshift - z : bash ~/.config/bin/assigned_open.sh Zotero 9
 rshift - w : bash ~/.config/bin/assigned_open.sh Microsoft\ Word 3
 rshift - e : bash ~/.config/bin/assigned_open.sh Microsoft\ Excel 4
 rshift - p : bash ~/.config/bin/assigned_open.sh Microsoft\ PowerPoint 4
-rshift - z : bash ~/.config/bin/assigned_open.sh zoom.us 5
 rshift - f : bash ~/.config/bin/assigned_open.sh Facetime 5
 rshift - a : bash ~/.config/bin/assigned_open.sh Anki 6
 rshift - g : bash ~/.config/bin/assigned_open.sh Google\ Chrome 7
 rshift - t : bash ~/.config/bin/assigned_open.sh iTerm 8
 rshift - r : bash ~/.config/bin/assigned_open.sh RStudio 9
+rshift + lshift - z : bash ~/.config/bin/assigned_open.sh zoom.us 5
 rshift + lshift - m : bash ~/.config/bin/assigned_open.sh Music 10
-rshift - s : open -a Stickies
+rshift - v : open -a Preview
+rshift - n : open -a Notes
 rshift - d : open -a Dictionary
 rshift - b : open -a Messages
 rshift + lshift - f : open -a Finder
 rshift + lshift - g : open -u https://chat.openai.com/
 rshift + lshift - p : open -a System\ Preferences
 rshift + lshift - l : shortcuts run "TaskCut"
+rshift - 0x2F : bash ~/.config/bin/next_app.sh
+rshift - s: /System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine
+
+# cycle windows of same app
+rshift - 0x30 : bash ~/.config/bin/cycle_windows.sh
+
 
 # special close
 rshift - escape : bash ~/.config/bin/special_close.sh; \
     yabai -m window --focus largest
 rshift - q : bash ~/.config/bin/quit_app.sh
+
+# eject backup disk
+rshift + lshift - e : diskutil eject /Volumes/External\ Storage\ \(Lacie\)
+
 # This is how we can quick stickies, or even close windows
 # osascript -e 'tell application "System Events" to keystroke "q" using {command down}'
  
@@ -150,7 +161,7 @@ rshift + lshift - s : yabai --restart-service
 :: resize @  
 # toggle resize mode 
 resize < escape ; default
-default < lalt - r ; resize
+default < rshift + lshift - r ; resize
 # resize commands
 resize < h : yabai -m window --resize left:-50:0; \
                   yabai -m window --resize right:-50:0
