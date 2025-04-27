@@ -112,6 +112,7 @@ rshift + lshift - f : open -a Finder
 rshift + lshift - g : open -u https://chat.openai.com/
 rshift + lshift - p : open -a System\ Preferences
 rshift + lshift - l : shortcuts run "TaskCut"
+# "." button for next app. This does not work as intended
 rshift - 0x2F : bash ~/.config/bin/next_app.sh
 rshift - s: /System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine
 
