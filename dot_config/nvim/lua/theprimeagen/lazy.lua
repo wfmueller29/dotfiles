@@ -5,6 +5,9 @@
 
 
 require('lazy').setup({
+    spec = {
+        -- import your plugins
+        { import = "plugins" },
     -- File navigation
     {
         'nvim-telescope/telescope.nvim',
@@ -19,12 +22,12 @@ require('lazy').setup({
     --- Uncomment these if you want to manage LSP servers from neovim
     { 'williamboman/mason.nvim' },
     { 'williamboman/mason-lspconfig.nvim' },
-    { 'VonHeikemen/lsp-zero.nvim', branch = 'v3.x' },
+    { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
     { 'neovim/nvim-lspconfig' },
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/nvim-cmp' },
     { 'L3MON4D3/LuaSnip' },
-    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+    { "nvim-treesitter/nvim-treesitter",  build = ":TSUpdate" },
 
     "jalvesaq/Nvim-R",
     "christoomey/vim-tmux-navigator",
@@ -45,10 +48,10 @@ require('lazy').setup({
     },
 
     -- Colorschemes / Themes
-    { "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = ... },
-    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-    { 'rose-pine/neovim', name = 'rose-pine' },
-    { "folke/tokyonight.nvim", lazy = false, priority = 1000, opts = {}, },
+    { "ellisonleao/gruvbox.nvim", priority = 1000,     config = true,   opts = ... },
+    { "catppuccin/nvim",          name = "catppuccin", priority = 1000 },
+    { 'rose-pine/neovim',         name = 'rose-pine' },
+    { "folke/tokyonight.nvim",    lazy = false,        priority = 1000, opts = {}, },
     'NvChad/nvim-colorizer.lua',
     {
         'nvim-lualine/lualine.nvim',
@@ -75,6 +78,7 @@ require('lazy').setup({
     {
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
+    },
     },
 
 })
