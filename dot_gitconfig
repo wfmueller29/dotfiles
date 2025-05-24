@@ -6,3 +6,6 @@
 	editor = nvim
 [commit]
 	verbose = true
+[init]
+    defaultBranch = main
+
